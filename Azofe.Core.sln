@@ -1,0 +1,31 @@
+
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.4.33205.214
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Azofe.Core", "Azofe.Core\Azofe.Core.csproj", "{C8736024-62E3-4884-B430-3EE92FA9CA13}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Azofe.Core.Tests", "Azofe.Core.Tests\Azofe.Core.Tests.csproj", "{ABB4C381-8FE9-4F37-B28F-1D00E793EBA7}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{C8736024-62E3-4884-B430-3EE92FA9CA13}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C8736024-62E3-4884-B430-3EE92FA9CA13}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C8736024-62E3-4884-B430-3EE92FA9CA13}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C8736024-62E3-4884-B430-3EE92FA9CA13}.Release|Any CPU.Build.0 = Release|Any CPU
+		{ABB4C381-8FE9-4F37-B28F-1D00E793EBA7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{ABB4C381-8FE9-4F37-B28F-1D00E793EBA7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{ABB4C381-8FE9-4F37-B28F-1D00E793EBA7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{ABB4C381-8FE9-4F37-B28F-1D00E793EBA7}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {336D96EE-91ED-4E75-BA4B-EA91202B62ED}
+	EndGlobalSection
+EndGlobal
