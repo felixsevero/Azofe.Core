@@ -5,21 +5,28 @@ namespace Azofe.Core.Tests;
 public class EnumerationAttributeTests {
 
 	[Fact]
-	public void Construtor_DeveFalhar_ParaUmValorInvalido() {
-		ArgumentException exception = Assert.Throws<ArgumentException>(() => new EnumerationAttribute(typeof(bool)));
+	public void Constructor_NotEnumeration_ThrowsArgumentException() {
+		Action actual = () => new EnumerationAttribute(typeof(bool));
 
+		ArgumentException exception = Assert.Throws<ArgumentException>(actual);
 		Assert.Equal("O tipo deve ser uma enumeração.", exception.Message);
 	}
 
 	[Fact]
-	public void Construtor_DeveFalhar_ParaUmValorNulo() => Assert.Throws<ArgumentNullException>(() => new EnumerationAttribute(null!));
+	public void Constructor_NullArg_ThrowsArgumentNullException() {
+		Action actual = () => new EnumerationAttribute(null!);
+
+		Assert.Throws<ArgumentNullException>(actual);
+	}
 
 	[Theory]
 	[MemberData(nameof(Data))]
-	public void Enumeration_DeveSerCondizente_ParaUmValorInteiro(Type enumType, object? value, bool expected) {
+	public void IsValid_ObjectValue_ReturnsBool(Type enumType, object? value, bool expected) {
 		EnumerationAttribute attribute = new(enumType);
 
-		Assert.Equal(expected, attribute.IsValid(value));
+		bool actual = attribute.IsValid(value);
+
+		Assert.Equal(expected, actual);
 	}
 
 	public static TheoryData<Type, object?, bool> Data => new() {

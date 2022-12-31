@@ -6,20 +6,24 @@ public class MaximumAttributeTests {
 
 	[Theory]
 	[MemberData(nameof(FalseData))]
-	public void Maximum_DeveSerFalso_ParaUmValorInvalido(object? value, long maximum, bool exclusive) {
+	public void IsValid_InvalidArg_ReturnsFalse(object? value, long maximum, bool exclusive) {
 		MaximumAttribute attribute = new(maximum) {
 			Exclusive = exclusive
 		};
 
-		Assert.False(attribute.IsValid(value));
+		bool actual = attribute.IsValid(value);
+
+		Assert.False(actual);
 	}
 
 	[Theory]
 	[MemberData(nameof(TrueData))]
-	public void Maximum_DeveSerVerdadeiro_ParaUmValorValido(object? value) {
+	public void IsValid_ValidArg_ReturnsTrue(object? value) {
 		MaximumAttribute attribute = new(10);
 
-		Assert.True(attribute.IsValid(value));
+		bool actual = attribute.IsValid(value);
+
+		Assert.True(actual);
 	}
 
 	public static TheoryData<object?, long, bool> FalseData => new() {

@@ -5,26 +5,31 @@ namespace Azofe.Core.Tests;
 public class MatchAttributeTests {
 
 	[Fact]
-	public void Construtor_DeveFalhar_ParaUmValorIndefinido() {
-		ArgumentException exception = Assert.Throws<ArgumentException>(() => new MatchAttribute((Matches)100));
+	public void Constructor_InvalidArg_ThrowsArgumentException() {
+		Action actual = () => new MatchAttribute((Matches)100);
 
+		ArgumentException exception = Assert.Throws<ArgumentException>(actual);
 		Assert.Equal("O valor é inválido.", exception.Message);
 	}
 
 	[Theory]
 	[MemberData(nameof(FalseData))]
-	public void Match_DeveSerFalso_ParaUmValorInvalido(object? value, Matches matches) {
+	public void IsValid_InvalidArg_ReturnsFalse(object? value, Matches matches) {
 		MatchAttribute attribute = new(matches);
 
-		Assert.False(attribute.IsValid(value));
+		bool actual = attribute.IsValid(value);
+
+		Assert.False(actual);
 	}
 
 	[Theory]
 	[MemberData(nameof(TrueData))]
-	public void Match_DeveSerVerdadeiro_ParaUmValorValido(object? value, Matches matches) {
+	public void IsValid_ValidArg_ReturnsTrue(object? value, Matches matches) {
 		MatchAttribute attribute = new(matches);
 
-		Assert.True(attribute.IsValid(value));
+		bool actual = attribute.IsValid(value);
+
+		Assert.True(actual);
 	}
 
 	public static TheoryData<object?, Matches> FalseData => new() {

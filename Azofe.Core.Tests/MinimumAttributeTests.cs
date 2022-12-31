@@ -6,20 +6,24 @@ public class MinimumAttributeTests {
 
 	[Theory]
 	[MemberData(nameof(FalseData))]
-	public void Minimum_DeveSerFalso_ParaUmValorInvalido(object? value, long minimum, bool exclusive) {
+	public void IsValid_InvalidArg_ReturnsFalse(object? value, long minimum, bool exclusive) {
 		MinimumAttribute attribute = new(minimum) {
 			Exclusive = exclusive
 		};
 
-		Assert.False(attribute.IsValid(value));
+		bool actual = attribute.IsValid(value);
+
+		Assert.False(actual);
 	}
 
 	[Theory]
 	[MemberData(nameof(TrueData))]
-	public void Minimum_DeveSerVerdadeiro_ParaUmValorValido(object? value) {
+	public void IsValid_ValidArg_ReturnsTrue(object? value) {
 		MinimumAttribute attribute = new(0);
 
-		Assert.True(attribute.IsValid(value));
+		bool actual = attribute.IsValid(value);
+
+		Assert.True(actual);
 	}
 
 	public static TheoryData<object?, long, bool> FalseData => new() {

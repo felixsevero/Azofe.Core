@@ -6,27 +6,33 @@ public class NotEmptyAttributeTests {
 
 	[Theory]
 	[MemberData(nameof(FalseData))]
-	public void NotEmpty_DeveSerFalso_ParaUmValorVazio(object? value) {
+	public void IsValid_EmptyArg_ReturnsFalse(object? value) {
 		NotEmptyAttribute attribute = new();
 
-		Assert.False(attribute.IsValid(value));
-	}
+		bool actual = attribute.IsValid(value);
 
-	[Fact]
-	public void NotEmpty_DeveSerVerdadeiro_ParaUmValorEmBranco() {
-		NotEmptyAttribute attribute = new() {
-			AllowWhiteSpaces = true
-		};
-
-		Assert.True(attribute.IsValid(" "));
+		Assert.False(actual);
 	}
 
 	[Theory]
 	[MemberData(nameof(TrueData))]
-	public void NotEmpty_DeveSerVerdadeiro_ParaUmValorNaoVazio(object? value) {
+	public void IsValid_NotEmptyArg_ReturnsTrue(object? value) {
 		NotEmptyAttribute attribute = new();
 
-		Assert.True(attribute.IsValid(value));
+		bool actual = attribute.IsValid(value);
+
+		Assert.True(actual);
+	}
+
+	[Fact]
+	public void IsValid_WhiteSpaceString_ReturnsTrue() {
+		NotEmptyAttribute attribute = new() {
+			AllowWhiteSpaces = true
+		};
+
+		bool actual = attribute.IsValid(" ");
+
+		Assert.True(actual);
 	}
 
 	public static TheoryData<object?> FalseData => new() {

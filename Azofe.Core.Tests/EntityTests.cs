@@ -5,40 +5,21 @@ namespace Azofe.Core.Tests;
 public class EntityTests {
 
 	[Fact]
-	public void Construtor_DeveFalhar_ParaUmValorNulo() => Assert.Throws<ArgumentNullException>(() => new SimpleEntity(null!));
+	public void Constructor_NullArg_ThrowsArgumentNullException() {
+		Action actual = () => new SimpleEntity(null!);
 
-	[Fact]
-	public void Equals_DeveSerFalso_ParaTiposDiferentes() {
-		SimpleEntity simpleEntity = new(1);
-		AnotherSimpleEntity anotherSimpleEntity = new(1);
-
-		Assert.False(simpleEntity.Equals(anotherSimpleEntity));
+		Assert.Throws<ArgumentNullException>(actual);
 	}
 
 	[Fact]
-	public void Equals_DeveSerFalso_ParaUmValorDiferente() {
-		SimpleEntity simpleEntity = new(1);
-		SimpleClass simpleClass = new();
-
-		Assert.False(simpleEntity.Equals(simpleClass));
-	}
-
-	[Fact]
-	public void Equals_DeveSerFalso_ParaUmValorNulo() {
-		SimpleEntity simpleEntity = new(1);
-
-		Assert.False(simpleEntity.Equals(null));
-		Assert.False(simpleEntity == null);
-		Assert.False(null == simpleEntity);
-	}
-
-	[Fact]
-	public void Equals_DeveSerVerdadeiro_ParaObjetosIguais() {
+	public void Equals_EquivalentObject_ReturnsTrue() {
 		object simpleEntity1 = new SimpleEntity(1);
 		object simpleEntity2 = new SimpleEntity(1);
 
+		bool actual = simpleEntity1.Equals(simpleEntity2);
+
 		// Equals method is overridden and evaluated at runtime.
-		Assert.True(simpleEntity1.Equals(simpleEntity2));
+		Assert.True(actual);
 
 		// Equality operator (==) is overloaded and evaluated at compile time.
 		// See: https://stackoverflow.com/a/1849288/2406622
@@ -46,14 +27,47 @@ public class EntityTests {
 	}
 
 	[Fact]
-	public void Equals_DeveSerVerdadeiro_ParaUmValorReflexivo() {
+	public void Equals_NotEntity_ReturnsFalse() {
 		SimpleEntity simpleEntity = new(1);
+		SimpleClass simpleClass = new();
 
-		Assert.True(simpleEntity.Equals(simpleEntity));
+		bool actual = simpleEntity.Equals(simpleClass);
+
+		Assert.False(actual);
 	}
 
 	[Fact]
-	public void Equals_DeveSerVerdadeiro_ParaValoresSimetricos() {
+	public void Equals_NotEquivalentEntity_ReturnsFalse() {
+		SimpleEntity simpleEntity = new(1);
+		AnotherSimpleEntity anotherSimpleEntity = new(1);
+
+		bool actual = simpleEntity.Equals(anotherSimpleEntity);
+
+		Assert.False(actual);
+	}
+
+	[Fact]
+	public void Equals_NullArg_ReturnsFalse() {
+		SimpleEntity simpleEntity = new(1);
+
+		bool actual = simpleEntity.Equals(null);
+
+		Assert.False(actual);
+		Assert.False(simpleEntity == null);
+		Assert.False(null == simpleEntity);
+	}
+
+	[Fact]
+	public void Equals_ReflexiveValue_ReturnsTrue() {
+		SimpleEntity simpleEntity = new(1);
+
+		bool actual = simpleEntity.Equals(simpleEntity);
+
+		Assert.True(actual);
+	}
+
+	[Fact]
+	public void Equals_SymmetricValue_ReturnsTrue() {
 		SimpleEntity simpleEntity1 = new(1);
 		SimpleEntity simpleEntity2 = new(1);
 
@@ -62,7 +76,7 @@ public class EntityTests {
 	}
 
 	[Fact]
-	public void Equals_DeveSerVerdadeiro_ParaValoresTransitivos() {
+	public void Equals_TransitiveValue_ReturnsTrue() {
 		SimpleEntity simpleEntity1 = new(1);
 		SimpleEntity simpleEntity2 = new(1);
 		SimpleEntity simpleEntity3 = new(1);
@@ -73,22 +87,22 @@ public class EntityTests {
 	}
 
 	[Fact]
-	public void GetHashCode_DeveSerDiferente_ParaValoresDiferentes() {
+	public void GetHashCode_EquivalentEntity_SameHash() {
+		SimpleEntity simpleEntity1 = new(1);
+		SimpleEntity simpleEntity2 = new(1);
+
+		Assert.Equal(simpleEntity1.GetHashCode(), simpleEntity1.GetHashCode());
+		Assert.Equal(simpleEntity1.GetHashCode(), simpleEntity2.GetHashCode());
+	}
+
+	[Fact]
+	public void GetHashCode_NotEquivalentEntity_NotSameHash() {
 		SimpleEntity simpleEntity1 = new(1);
 		SimpleEntity simpleEntity2 = new(2);
 		AnotherSimpleEntity anotherSimpleEntity = new(1);
 
 		Assert.NotEqual(simpleEntity1.GetHashCode(), simpleEntity2.GetHashCode());
 		Assert.NotEqual(simpleEntity1.GetHashCode(), anotherSimpleEntity.GetHashCode());
-	}
-
-	[Fact]
-	public void GetHashCode_DeveSerIgual_ParaValoresIguais() {
-		SimpleEntity simpleEntity1 = new(1);
-		SimpleEntity simpleEntity2 = new(1);
-
-		Assert.Equal(simpleEntity1.GetHashCode(), simpleEntity1.GetHashCode());
-		Assert.Equal(simpleEntity1.GetHashCode(), simpleEntity2.GetHashCode());
 	}
 
 	class AnotherSimpleEntity: Entity {

@@ -5,18 +5,21 @@ namespace Azofe.Core.Tests;
 public class ScaleAttributeTests {
 
 	[Fact]
-	public void Construtor_DeveFalhar_ParaUmValorNegativo() {
-		ArgumentException exception = Assert.Throws<ArgumentException>(() => new ScaleAttribute(-1));
+	public void Constructor_ScaleLessThanZero_ThrowsArgumentException() {
+		Action actual = () => new ScaleAttribute(-1);
 
+		ArgumentException exception = Assert.Throws<ArgumentException>(actual);
 		Assert.Equal("A escala deve ser maior ou igual a zero.", exception.Message);
 	}
 
 	[Theory]
 	[MemberData(nameof(Data))]
-	public void Scale_DeveSerCondizente_ParaUmValorDecimal(object? value, int scale, bool expected) {
+	public void IsValid_ObjectValue_ReturnsBool(object? value, int scale, bool expected) {
 		ScaleAttribute attribute = new(scale);
 
-		Assert.Equal(expected, attribute.IsValid(value));
+		bool actual = attribute.IsValid(value);
+
+		Assert.Equal(expected, actual);
 	}
 
 	public static TheoryData<object?, int, bool> Data => new() {

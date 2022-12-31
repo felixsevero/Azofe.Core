@@ -5,19 +5,23 @@ namespace Azofe.Core.Tests;
 public class NotNullAttributeTests {
 
 	[Theory]
-	[MemberData(nameof(FalseData))]
-	public void NotNull_DeveSerFalso_ParaUmValorNulo(object? value) {
+	[MemberData(nameof(TrueData))]
+	public void IsValid_NotNullArg_ReturnsTrue(object? value) {
 		NotNullAttribute attribute = new();
 
-		Assert.False(attribute.IsValid(value));
+		bool actual = attribute.IsValid(value);
+
+		Assert.True(actual);
 	}
 
 	[Theory]
-	[MemberData(nameof(TrueData))]
-	public void NotNull_DeveSerVerdadeiro_ParaUmValorNaoNulo(object? value) {
+	[MemberData(nameof(FalseData))]
+	public void IsValid_NullArg_ReturnsFalse(object? value) {
 		NotNullAttribute attribute = new();
 
-		Assert.True(attribute.IsValid(value));
+		bool actual = attribute.IsValid(value);
+
+		Assert.False(actual);
 	}
 
 	public static TheoryData<object?> FalseData => new() {
