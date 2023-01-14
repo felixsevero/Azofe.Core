@@ -5,3 +5,5 @@ public interface IIdFactory {
 	Id Next();
 
 }
+
+public interface IIdFactory<T>: IIdFactory where T: class {}

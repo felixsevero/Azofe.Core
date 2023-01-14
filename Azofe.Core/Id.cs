@@ -20,6 +20,6 @@ public sealed class Id: ValueObject {
 		yield return Value;
 	}
 
-	public override string ToString() => Value.ToString(@"0\.000\.000\.000\.000\.000\.000");
+	public override string ToString() => Value.ToString();
 
 }
