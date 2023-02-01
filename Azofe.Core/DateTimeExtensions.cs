@@ -14,14 +14,14 @@ public static class DateTimeExtensions {
 
 	public static TimeOnly FromTimeString(this string str) => TimeOnly.ParseExact(str, TimeFormat, CultureInfo.InvariantCulture);
 
-	public static string ToDateString(this DateOnly date) => date.ToString(DateFormat);
+	public static string ToDateString(this DateOnly date) => date.ToString(DateFormat, CultureInfo.InvariantCulture);
 
 	public static string ToDateTimeString(this DateTime dateTime) {
 		if(dateTime.Kind != DateTimeKind.Utc)
 			throw new ArgumentException($"O tipo deve ser {DateTimeKind.Utc}. O tipo atual é {dateTime.Kind}.");
-		return dateTime.ToString(DateTimeFormat);
+		return dateTime.ToString(DateTimeFormat, CultureInfo.InvariantCulture);
 	}
 
-	public static string ToTimeString(this TimeOnly time) => time.ToString(TimeFormat);
+	public static string ToTimeString(this TimeOnly time) => time.ToString(TimeFormat, CultureInfo.InvariantCulture);
 
 }

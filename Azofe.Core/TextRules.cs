@@ -11,7 +11,7 @@ public static class TextRules {
 		text = text.Trim();
 		text = new(text.Where(c => c != noBreakSpace && c != softHyphen).ToArray());
 		text = Regex.Replace(text, "[ ]{2,}", " ", RegexOptions.Compiled);
-		text = Regex.Replace(text, @"\r\n|\r|\n", "\n", RegexOptions.Compiled);
+		text = Regex.Replace(text, @"\r\n|\r", "\n", RegexOptions.Compiled);
 		return text;
 	}
 

@@ -45,7 +45,7 @@ public class PagedList<T> {
 
 	public int TotalPages { get; }
 
-	public PagedList<TResult> Cast<TResult>(Func<T, TResult> selector) => new(PageItems.Select(selector).ToList(), TotalItems, PageIndex, PageSize, TotalPages);
+	public PagedList<TResult> Cast<TResult>(Func<T, TResult> selector) => new(PageItems.Select(selector).ToList().AsReadOnly(), TotalItems, PageIndex, PageSize, TotalPages);
 
 	public override string ToString() => $"Items = {PageItems.Count}";
 
