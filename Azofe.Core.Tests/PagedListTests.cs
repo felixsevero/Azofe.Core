@@ -61,12 +61,13 @@ public class PagedListTests {
 	}
 
 	[Theory]
-	[InlineData(0, 0, 0, 15, 1)]
-	[InlineData(8, 8, 0, 15, 1)]
-	[InlineData(15, 15, 0, 15, 1)]
-	[InlineData(15, 40, 1, 15, 3)]
-	[InlineData(10, 40, 2, 15, 3)]
-	public void Constructor_ValidArgs_ExecutesSuccessfully(int count, int totalItems, int pageIndex, int pageSize, int totalPages) {
+	[InlineData(0, 0, 0, 15, 1, false, false)]
+	[InlineData(8, 8, 0, 15, 1, false, false)]
+	[InlineData(15, 15, 0, 15, 1, false, false)]
+	[InlineData(15, 40, 0, 15, 3, false, true)]
+	[InlineData(15, 40, 1, 15, 3, true, true)]
+	[InlineData(10, 40, 2, 15, 3, true, false)]
+	public void Constructor_ValidArgs_ExecutesSuccessfully(int count, int totalItems, int pageIndex, int pageSize, int totalPages, bool hasPreviousPage, bool hasNextPage) {
 		PagedList<int> pagedList = new(Enumerable.Range(1, count).ToList(), totalItems, pageIndex, pageSize);
 
 		Assert.Equal(count, pagedList.PageItems.Count);
@@ -74,6 +75,8 @@ public class PagedListTests {
 		Assert.Equal(pageIndex, pagedList.PageIndex);
 		Assert.Equal(pageSize, pagedList.PageSize);
 		Assert.Equal(totalPages, pagedList.TotalPages);
+		Assert.Equal(hasPreviousPage, pagedList.HasPreviousPage);
+		Assert.Equal(hasNextPage, pagedList.HasNextPage);
 	}
 
 }

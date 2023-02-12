@@ -35,6 +35,10 @@ public class PagedList<T> {
 		TotalPages = totalPages;
 	}
 
+	public bool HasNextPage => PageIndex < TotalPages - 1;
+
+	public bool HasPreviousPage => PageIndex > 0;
+
 	public int PageIndex { get; }
 
 	public IList<T> PageItems { get; }
