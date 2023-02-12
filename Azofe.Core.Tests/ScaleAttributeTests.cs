@@ -9,7 +9,7 @@ public class ScaleAttributeTests {
 		Action actual = () => new ScaleAttribute(-1);
 
 		ArgumentException exception = Assert.Throws<ArgumentException>(actual);
-		Assert.Equal("A escala deve ser maior ou igual a zero.", exception.Message);
+		Assert.Equal("The scale must be a number greater than or equal to zero.", exception.Message);
 	}
 
 	[Theory]

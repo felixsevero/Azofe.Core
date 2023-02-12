@@ -7,7 +7,7 @@ public class MatchAttribute: ValidationAttribute {
 
 	public MatchAttribute(Matches matches) {
 		if(!Enum.IsDefined(matches))
-			throw new ArgumentException("O valor é inválido.");
+			throw new ArgumentException("The value is invalid.");
 		Matches = matches;
 	}
 

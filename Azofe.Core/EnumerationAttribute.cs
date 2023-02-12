@@ -11,7 +11,7 @@ public class EnumerationAttribute: ValidationAttribute {
 	public EnumerationAttribute(Type enumType) {
 		ArgumentNullException.ThrowIfNull(enumType);
 		if(!enumType.IsEnum && !typeof(Enumeration).IsAssignableFrom(enumType))
-			throw new ArgumentException("O tipo deve ser uma enumeração.");
+			throw new ArgumentException("The type must be an enumeration.");
 		EnumType = enumType;
 	}
 
@@ -25,7 +25,7 @@ public class EnumerationAttribute: ValidationAttribute {
 				return EnumType.IsEnumDefined(i);
 			IEnumerable<Enumeration>? enumerable = (IEnumerable<Enumeration>?)GetValuesMethodInfo?.MakeGenericMethod(EnumType).Invoke(null, null);
 			if(enumerable is null)
-				throw new InvalidOperationException($"Nenhum valor foi encontrado para a enumeração {EnumType}.");
+				throw new InvalidOperationException($"No value was found for the {EnumType} enumeration.");
 			return enumerable.Any(x => x.Value == i);
 		}
 		return false;

@@ -9,7 +9,7 @@ public class EnumerationAttributeTests {
 		Action actual = () => new EnumerationAttribute(typeof(bool));
 
 		ArgumentException exception = Assert.Throws<ArgumentException>(actual);
-		Assert.Equal("O tipo deve ser uma enumeração.", exception.Message);
+		Assert.Equal("The type must be an enumeration.", exception.Message);
 	}
 
 	[Fact]

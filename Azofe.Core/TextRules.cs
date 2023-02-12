@@ -25,12 +25,12 @@ public static class TextRules {
 		static void ValidateCharacter(int index, string text, bool multiline) {
 			int codePoint = char.ConvertToUtf32(text, index);
 			if(codePoint > maxCharacter)
-				throw new ArgumentException($"O texto deve conter apenas caracteres latinos. O caractere 'U+{codePoint:X4}', na posição {index} do texto, é inválido.");
+				throw new ArgumentException($"The text must contain only Latin characters. The character 'U+{codePoint:X4}', at position {index} of the text, is invalid.");
 			bool newLine = codePoint == '\r' || codePoint == '\n';
 			if(newLine && !multiline)
-				throw new ArgumentException($"O texto deve estar em uma única linha. Há uma quebra de linha na posição {index} do texto.");
+				throw new ArgumentException($"The text must be on a single line. There is a line break at position {index} of the text.");
 			if(!newLine && char.IsControl(text, index))
-				throw new ArgumentException($"O texto é inválido, pois possui o caractere de controle 'U+{codePoint:X4}' na posição {index} do texto.");
+				throw new ArgumentException($"The text is invalid. It contains the control character 'U+{codePoint:X4}' at position {index} of the text.");
 		}
 	}
 

@@ -9,7 +9,7 @@ public class MatchAttributeTests {
 		Action actual = () => new MatchAttribute((Matches)100);
 
 		ArgumentException exception = Assert.Throws<ArgumentException>(actual);
-		Assert.Equal("O valor é inválido.", exception.Message);
+		Assert.Equal("The value is invalid.", exception.Message);
 	}
 
 	[Theory]

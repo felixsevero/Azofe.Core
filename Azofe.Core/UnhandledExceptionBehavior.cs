@@ -13,7 +13,7 @@ public class UnhandledExceptionBehavior<TRequest, TResponse>: MediatR.IPipelineB
 			return await next();
 		}
 		catch(Exception e) {
-			logger.LogError(e, "A requisição [{TRequest}]:[{TResponse}] gerou uma exceção do tipo [{TException}].", typeof(TRequest), typeof(TResponse), e.GetType());
+			logger.LogError(e, "The request [{TRequest}]:[{TResponse}] threw an exception of type [{TException}].", typeof(TRequest), typeof(TResponse), e.GetType());
 
 			throw;
 		}

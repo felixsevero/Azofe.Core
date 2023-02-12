@@ -40,11 +40,11 @@ public class TextRulesTests {
 	}
 
 	[Theory]
-	[InlineData("Test\u0000Test", "O texto é inválido, pois possui o caractere de controle 'U+0000' na posição 4 do texto.")]
-	[InlineData("Test\u0100Test", "O texto deve conter apenas caracteres latinos. O caractere 'U+0100', na posição 4 do texto, é inválido.")]
-	[InlineData("Test\nTest", "O texto deve estar em uma única linha. Há uma quebra de linha na posição 4 do texto.")]
-	[InlineData("Test\rTest", "O texto deve estar em uma única linha. Há uma quebra de linha na posição 4 do texto.")]
-	[InlineData("Test\uD83D\uDC02Test", "O texto deve conter apenas caracteres latinos. O caractere 'U+1F402', na posição 4 do texto, é inválido.")]
+	[InlineData("Test\u0000Test", "The text is invalid. It contains the control character 'U+0000' at position 4 of the text.")]
+	[InlineData("Test\u0100Test", "The text must contain only Latin characters. The character 'U+0100', at position 4 of the text, is invalid.")]
+	[InlineData("Test\nTest", "The text must be on a single line. There is a line break at position 4 of the text.")]
+	[InlineData("Test\rTest", "The text must be on a single line. There is a line break at position 4 of the text.")]
+	[InlineData("Test\uD83D\uDC02Test", "The text must contain only Latin characters. The character 'U+1F402', at position 4 of the text, is invalid.")]
 	public void Validate_InvalidString_ThrowsArgumentException(string value, string message) {
 		Action actual = () => TextRules.Validate(value, false);
 

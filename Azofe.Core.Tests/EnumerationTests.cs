@@ -83,8 +83,8 @@ public class EnumerationTests {
 
 		FormatException exception1 = Assert.Throws<FormatException>(actual1);
 		FormatException exception2 = Assert.Throws<FormatException>(actual2);
-		Assert.Equal("O valor '0' é inválido para Azofe.Core.Tests.EnumerationTests+SimpleEnumeration.", exception1.Message);
-		Assert.Equal("O nome 'Test' é inválido para Azofe.Core.Tests.EnumerationTests+SimpleEnumeration.", exception2.Message);
+		Assert.Equal("The parsing failed. The value '0' was not found in Azofe.Core.Tests.EnumerationTests+SimpleEnumeration.", exception1.Message);
+		Assert.Equal("The parsing failed. The name 'Test' was not found in Azofe.Core.Tests.EnumerationTests+SimpleEnumeration.", exception2.Message);
 	}
 
 	[Fact]

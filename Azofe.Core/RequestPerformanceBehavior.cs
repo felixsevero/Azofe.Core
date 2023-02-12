@@ -21,7 +21,7 @@ public class RequestPerformanceBehavior<TRequest, TResponse>: MediatR.IPipelineB
 		stopWatch.Stop();
 		TimeSpan elapsedTime = stopWatch.Elapsed;
 		if(elapsedTime > TimeSpan.FromMilliseconds(MillisecondsLimit))
-			logger.LogWarning("A requisição [{TRequest}]:[{TResponse}] levou [{ElapsedTime}] para ser concluída.", typeof(TRequest), typeof(TResponse), elapsedTime);
+			logger.LogWarning("The request [{TRequest}]:[{TResponse}] took [{ElapsedTime}] to complete.", typeof(TRequest), typeof(TResponse), elapsedTime);
 		return response;
 	}
 

@@ -18,7 +18,7 @@ public static class DateTimeExtensions {
 
 	public static string ToDateTimeString(this DateTime dateTime) {
 		if(dateTime.Kind != DateTimeKind.Utc)
-			throw new ArgumentException($"O tipo deve ser {DateTimeKind.Utc}. O tipo atual é {dateTime.Kind}.");
+			throw new ArgumentException($"The conversion cannot be done. The {nameof(DateTime)} has a {dateTime.Kind} kind. A {DateTimeKind.Utc} kind is expected.");
 		return dateTime.ToString(DateTimeFormat, CultureInfo.InvariantCulture);
 	}
 

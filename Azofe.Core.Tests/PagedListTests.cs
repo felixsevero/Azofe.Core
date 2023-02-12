@@ -18,8 +18,8 @@ public class PagedListTests {
 	}
 
 	[Theory]
-	[InlineData(-1, "O índice da página deve estar entre 0 e 2. O índice é -1.")]
-	[InlineData(3, "O índice da página deve estar entre 0 e 2. O índice é 3.")]
+	[InlineData(-1, "The page index must be a number between 0 and 2. The index is -1.")]
+	[InlineData(3, "The page index must be a number between 0 and 2. The index is 3.")]
 	public void Constructor_InvalidPageIndex_ThrowsArgumentOutOfRangeException(int pageIndex, string message) {
 		Action actual = () => new PagedList<int>(Enumerable.Range(1, 10).ToList(), 28, pageIndex);
 
@@ -28,8 +28,8 @@ public class PagedListTests {
 	}
 
 	[Theory]
-	[InlineData(8, 1, "A lista deve conter 10 itens, mas contém 8.")]
-	[InlineData(5, 2, "A lista deve conter 8 itens, mas contém 5.")]
+	[InlineData(8, 1, "The page must contain 10 items, but it contains 8.")]
+	[InlineData(5, 2, "The page must contain 8 items, but it contains 5.")]
 	public void Constructor_InvalidPageItems_ThrowsArgumentException(int count, int pageIndex, string message) {
 		Action actual = () => new PagedList<int>(Enumerable.Range(1, count).ToList(), 28, pageIndex);
 
@@ -49,7 +49,7 @@ public class PagedListTests {
 		Action actual = () => new PagedList<int>(Enumerable.Range(1, 10).ToList(), 28, 0, 0);
 
 		ArgumentException exception = Assert.Throws<ArgumentException>(actual);
-		Assert.Equal("O tamanho da página deve ser maior que zero.", exception.Message);
+		Assert.Equal("The page size must be a number greater than zero.", exception.Message);
 	}
 
 	[Fact]
@@ -57,7 +57,7 @@ public class PagedListTests {
 		Action actual = () => new PagedList<int>(Enumerable.Range(1, 10).ToList(), -28);
 
 		ArgumentException exception = Assert.Throws<ArgumentException>(actual);
-		Assert.Equal("O número total de itens deve ser maior ou igual a zero.", exception.Message);
+		Assert.Equal("The total items count must be a number greater than or equal to zero.", exception.Message);
 	}
 
 	[Theory]

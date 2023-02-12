@@ -46,14 +46,14 @@ public abstract class Enumeration {
 		return (IEnumerable<T>)Values[type];
 	}
 
-	public static T Parse<T>(string name) where T: Enumeration => Parse<T, string>(name, "nome", item => item.Name == name);
+	public static T Parse<T>(string name) where T: Enumeration => Parse<T, string>(name, "name", item => item.Name == name);
 
-	public static T Parse<T>(int value) where T: Enumeration => Parse<T, int>(value, "valor", item => item.Value == value);
+	public static T Parse<T>(int value) where T: Enumeration => Parse<T, int>(value, "value", item => item.Value == value);
 
 	static T Parse<T, K>(K value, string description, Func<T, bool> predicate) where T: Enumeration {
 		T? item = GetValues<T>().FirstOrDefault(predicate);
 		if(item is null)
-			throw new FormatException($"O {description} '{value}' é inválido para {typeof(T)}.");
+			throw new FormatException($"The parsing failed. The {description} '{value}' was not found in {typeof(T)}.");
 		return item;
 	}
 

@@ -10,9 +10,9 @@ public class RequestValidationBehavior<TRequest, TResponse>: MediatR.IPipelineBe
 			return await next();
 		TResponse response = Activator.CreateInstance<TResponse>();
 		if(response is not Result result)
-			throw new InvalidCastException($"O tipo {typeof(TResponse)} não é conversível para {typeof(Result)}.");
+			throw new InvalidCastException($"The type {typeof(TResponse)} cannot be cast to {typeof(Result)}.");
 		foreach(ValidationResult error in errors)
-			result.AddError(error.MemberNames.Single(), error.ErrorMessage ?? "Nenhuma mensagem de erro foi definida.");
+			result.AddError(error.MemberNames.Single(), error.ErrorMessage ?? "No error message defined.");
 		return response;
 	}
 

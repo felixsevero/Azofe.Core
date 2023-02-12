@@ -8,7 +8,7 @@ public class DomainException: Exception {
 
 	public DomainException(IEnumerable<string> messages): this(messages, null) {}
 
-	public DomainException(IEnumerable<string> messages, Exception? innerException): base("Uma exceção de domínio foi gerada. Veja as mensagens para mais detalhes.", innerException) => Messages.AddRange(messages);
+	public DomainException(IEnumerable<string> messages, Exception? innerException): base($"A domain exception was thrown. See the {nameof(Messages)} for more details.", innerException) => Messages.AddRange(messages);
 
 	public List<string> Messages { get; } = new List<string>();
 

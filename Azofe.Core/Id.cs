@@ -4,7 +4,7 @@ public sealed class Id: ValueObject {
 
 	public Id(long value) {
 		if(!IsValid(value))
-			throw new ArgumentException("A identidade deve ser maior que zero.", nameof(value));
+			throw new ArgumentException("The identifier must be a number greater than zero.", nameof(value));
 		Value = value;
 	}
 

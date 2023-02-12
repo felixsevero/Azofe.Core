@@ -5,7 +5,7 @@ namespace Azofe.Core;
 [AttributeUsage(AttributeTargets.Field | AttributeTargets.Parameter | AttributeTargets.Property)]
 public class IdAttribute: ValidationAttribute {
 
-	public IdAttribute(): base("A identidade deve ser um número maior que zero.") {}
+	public IdAttribute(): base("The identifier must be a number greater than zero.") {}
 
 	public override bool IsValid(object? value) {
 		if(value is null)

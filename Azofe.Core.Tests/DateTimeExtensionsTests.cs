@@ -69,8 +69,8 @@ public class DateTimeExtensionsTests {
 	}
 
 	public static TheoryData<DateTime, string> NotUtcData => new() {
-		{ new(2021, 7, 27, 17, 12, 54, DateTimeKind.Local), "O tipo deve ser Utc. O tipo atual é Local." },
-		{ new(2021, 7, 27, 17, 12, 54, DateTimeKind.Unspecified), "O tipo deve ser Utc. O tipo atual é Unspecified." }
+		{ new(2021, 7, 27, 17, 12, 54, DateTimeKind.Local), "The conversion cannot be done. The DateTime has a Local kind. A Utc kind is expected." },
+		{ new(2021, 7, 27, 17, 12, 54, DateTimeKind.Unspecified), "The conversion cannot be done. The DateTime has a Unspecified kind. A Utc kind is expected." }
 	};
 
 }

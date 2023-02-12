@@ -11,19 +11,19 @@ public class PagedList<T> {
 	public PagedList(IList<T> pageItems, int totalItems, int pageIndex, int pageSize) {
 		ArgumentNullException.ThrowIfNull(pageItems);
 		if(totalItems < 0)
-			throw new ArgumentException("O número total de itens deve ser maior ou igual a zero.");
+			throw new ArgumentException("The total items count must be a number greater than or equal to zero.");
 		TotalItems = totalItems;
 		if(pageSize <= 0)
-			throw new ArgumentException("O tamanho da página deve ser maior que zero.");
+			throw new ArgumentException("The page size must be a number greater than zero.");
 		PageSize = pageSize;
 		int pages = (int)Math.Ceiling(TotalItems / (double)PageSize);
 		TotalPages = pages == 0 ? 1 : pages;
 		if(pageIndex < 0 || pageIndex >= TotalPages)
-			throw new ArgumentOutOfRangeException(message: $"O índice da página deve estar entre 0 e {TotalPages - 1}. O índice é {pageIndex}.", innerException: null);
+			throw new ArgumentOutOfRangeException(message: $"The page index must be a number between 0 and {TotalPages - 1}. The index is {pageIndex}.", innerException: null);
 		PageIndex = pageIndex;
 		int count = PageIndex == TotalPages - 1 ? TotalItems - PageIndex * PageSize : PageSize;
 		if(pageItems.Count != count)
-			throw new ArgumentException($"A lista deve conter {count} itens, mas contém {pageItems.Count}.");
+			throw new ArgumentException($"The page must contain {count} items, but it contains {pageItems.Count}.");
 		PageItems = new ReadOnlyCollection<T>(pageItems);
 	}
 

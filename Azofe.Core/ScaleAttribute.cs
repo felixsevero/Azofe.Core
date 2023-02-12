@@ -9,7 +9,7 @@ public class ScaleAttribute: ValidationAttribute {
 
 	public ScaleAttribute(int scale) {
 		if(scale < 0)
-			throw new ArgumentException("A escala deve ser maior ou igual a zero.");
+			throw new ArgumentException("The scale must be a number greater than or equal to zero.");
 		divisor = scale == 0 ? 1m : 1m / (decimal)Math.Pow(10, scale);
 		Scale = scale;
 	}

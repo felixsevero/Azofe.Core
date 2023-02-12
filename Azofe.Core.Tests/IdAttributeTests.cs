@@ -22,7 +22,7 @@ public class IdAttributeTests {
 		Action actual = () => attribute.Validate(false, string.Empty);
 
 		ValidationException exception = Assert.Throws<ValidationException>(actual);
-		Assert.Equal("A identidade deve ser um número maior que zero.", exception.ValidationResult.ErrorMessage);
+		Assert.Equal("The identifier must be a number greater than zero.", exception.ValidationResult.ErrorMessage);
 	}
 
 	public static TheoryData<object?, bool> Data => new() {
