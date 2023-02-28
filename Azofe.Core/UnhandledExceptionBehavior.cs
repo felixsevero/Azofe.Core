@@ -2,13 +2,13 @@ using Microsoft.Extensions.Logging;
 
 namespace Azofe.Core;
 
-public class UnhandledExceptionBehavior<TRequest, TResponse>: MediatR.IPipelineBehavior<TRequest, TResponse> where TRequest: MediatR.IRequest<TResponse> {
+public class UnhandledExceptionBehavior<TRequest, TResponse>: PipelineBehavior<TRequest, TResponse> where TRequest: notnull {
 
 	readonly ILogger<UnhandledExceptionBehavior<TRequest, TResponse>> logger;
 
 	public UnhandledExceptionBehavior(ILogger<UnhandledExceptionBehavior<TRequest, TResponse>> logger) => this.logger = logger;
 
-	public async Task<TResponse> Handle(TRequest request, MediatR.RequestHandlerDelegate<TResponse> next, CancellationToken cancellationToken) {
+	public override async Task<TResponse> Handle(TRequest request, RequestHandlerDelegate<TResponse> next, CancellationToken cancellationToken) {
 		try {
 			return await next();
 		}

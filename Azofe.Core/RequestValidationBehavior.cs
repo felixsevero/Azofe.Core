@@ -2,9 +2,9 @@ using System.ComponentModel.DataAnnotations;
 
 namespace Azofe.Core;
 
-public class RequestValidationBehavior<TRequest, TResponse>: MediatR.IPipelineBehavior<TRequest, TResponse> where TRequest: MediatR.IRequest<TResponse> {
+public class RequestValidationBehavior<TRequest, TResponse>: PipelineBehavior<TRequest, TResponse> where TRequest: notnull {
 
-	public async Task<TResponse> Handle(TRequest request, MediatR.RequestHandlerDelegate<TResponse> next, CancellationToken cancellationToken) {
+	public override async Task<TResponse> Handle(TRequest request, RequestHandlerDelegate<TResponse> next, CancellationToken cancellationToken) {
 		List<ValidationResult> errors = new();
 		if(Validator.TryValidateObject(request, new ValidationContext(request), errors, true))
 			return await next();
