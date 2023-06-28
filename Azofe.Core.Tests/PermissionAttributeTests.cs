@@ -49,6 +49,20 @@ public class PermissionAttributeTests {
 		Assert.Equal(expected, attribute.ToString());
 	}
 
+	[Fact]
+	public void GetPermission_EnumArg_ExecutesSuccessfully() {
+		string permission = PermissionAttribute.GetPermission(SimpleEnum.SimpleValue);
+
+		Assert.Equal("Permission_SimpleEnum_SimpleValue", permission);
+	}
+
+	[Fact]
+	public void GetPermission_NullArg_ThrowsArgumentNullException() {
+		Action actual = () => PermissionAttribute.GetPermission(null!);
+
+		Assert.Throws<ArgumentNullException>(actual);
+	}
+
 	enum SimpleEnum {
 
 		SimpleValue

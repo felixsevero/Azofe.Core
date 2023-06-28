@@ -7,10 +7,9 @@ public class PermissionAttribute: Attribute {
 
 	public PermissionAttribute(object enumValue) {
 		ArgumentNullException.ThrowIfNull(enumValue);
-		Type enumType = enumValue.GetType();
-		if(!enumType.IsEnum)
+		if(enumValue is not Enum @enum)
 			throw new ArgumentException("The object must be an enumeration.");
-		Permission = $"Permission_{enumType.Name}_{enumValue}";
+		Permission = GetPermission(@enum);
 	}
 
 	public PermissionAttribute(string permission) {
@@ -21,6 +20,11 @@ public class PermissionAttribute: Attribute {
 	}
 
 	public string Permission { get; }
+
+	public static string GetPermission(Enum enumValue) {
+		ArgumentNullException.ThrowIfNull(enumValue);
+		return $"Permission_{enumValue.GetType().Name}_{enumValue}";
+	}
 
 	public override string ToString() => Permission;
 
