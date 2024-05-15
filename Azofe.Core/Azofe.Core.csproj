@@ -1,9 +1,22 @@
 <Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <TargetFramework>net8.0</TargetFramework>
+    <Authors>Félix Severo</Authors>
+    <Company>Azofe</Company>
+    <Copyright>Copyright Félix Severo</Copyright>
+    <Description>A high-quality set of building blocks to architect your backend using Hexagonal Architecture and Domain-Driven Design.</Description>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
+    <PackageTags>azofe;core;architect;hexagonal;architecture;ddd</PackageTags>
+    <Product>Azofe</Product>
+    <RepositoryUrl>https://github.com/felixsevero/Azofe.Core.git</RepositoryUrl>
+    <TargetFramework>net8.0</TargetFramework>
+    <Version>0.1.0</Version>
   </PropertyGroup>
+  <ItemGroup>
+    <None Include="..\README.md" Pack="true" PackagePath="\" />
+  </ItemGroup>
   <ItemGroup>
     <PackageReference Include="IdGen" Version="3.0.5" />
     <PackageReference Include="MediatR" Version="12.2.0" />
