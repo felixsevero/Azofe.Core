@@ -1,0 +1,7 @@
+<Solution>
+  <Folder Name="/Solution Items/">
+    <File Path=".github/workflows/publish.yml" />
+  </Folder>
+  <Project Path="Azofe.Core.Tests/Azofe.Core.Tests.csproj" />
+  <Project Path="Azofe.Core/Azofe.Core.csproj" />
+</Solution>

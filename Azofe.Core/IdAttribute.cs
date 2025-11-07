@@ -10,8 +10,8 @@ public class IdAttribute: ValidationAttribute {
 	public override bool IsValid(object? value) {
 		if(value is null)
 			return true;
-		if(value is long l)
-			return Id.IsValid(l);
+		if(value is int i)
+			return Id.IsValid(i);
 		return false;
 	}
 

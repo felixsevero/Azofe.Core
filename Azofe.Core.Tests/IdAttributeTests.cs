@@ -28,10 +28,10 @@ public class IdAttributeTests {
 	public static TheoryData<object?, bool> Data => new() {
 		{ null, true },
 		{ true, false },
-		{ 1, false },
+		{ 0, false },
+		{ 1, true },
 		{ 1m, false },
-		{ 0L, false },
-		{ 1L, true }
+		{ 1L, false }
 	};
 
 }
